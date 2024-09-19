@@ -1,122 +1,82 @@
-import labsmacLogo from '@/assets/labsmacLogo.svg';
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
+import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { useMediaQuery } from '@/hooks/use-media-query';
-import { cn } from '@/lib/utils';
 import { Menu } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import labsmacLogo from '@/assets/labsmacLogo.svg';
 
-export function Navbar() {
-  const firstInputRef = useRef<HTMLInputElement>(null);
-  const isDesktop = useMediaQuery('(min-width:720px)');
-  useEffect(() => {
-    if (firstInputRef.current) {
-      firstInputRef.current.focus();
-    }
-  }, []);
-
-  return isDesktop ? (
-    <div className="border-b bg-white shadow-sm">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
+export default function Navbar() {
+  return (
+    <nav className="border-b">
+      <div className="flex h-16 items-center px-4">
         <a
           href="/"
-          className="mr-4">
+          className="flex items-center space-x-2">
           <img
             src={labsmacLogo}
             alt="LabSMaC Logo"
             className="h-12"
           />
         </a>
-
-        <div className="md:flex space-x-6">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/"
-                  className={cn('navigation-menu-link')}>
-                  Inicio
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/sobre"
-                  className={cn('navigation-menu-link')}>
-                  Sobre nós
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/servicos"
-                  className={cn('navigation-menu-link')}>
-                  Serviços
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  href="/contato"
-                  className={cn('navigation-menu-link')}>
-                  Contato
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
-      </div>
-    </div>
-  ) : (
-    <div className="border-b bg-white shadow-sm">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <a
-          href="/"
-          className="mr-4">
-          <img
-            src={labsmacLogo}
-            alt="LabSMaC Logo"
-            className="h-12"
-          />
-        </a>
-
-        <Sheet>
-          <SheetTrigger asChild>
-            <Menu />
-          </SheetTrigger>
-          <SheetContent
-            side="right"
-            className="sm:max-w-ms">
-            <ul className="space-y-4">
-              <li>
+        <div className="ml-auto flex items-center space-x-4">
+          <div className="hidden md:flex md:items-center md:gap-5 md:text-sm">
+            <a
+              href="/"
+              className="transition-colors hover:text-foreground/80">
+              Home
+            </a>
+            <a
+              href="/products"
+              className="transition-colors hover:text-foreground/80">
+              Produtos
+            </a>
+            <a
+              href="/about"
+              className="transition-colors hover:text-foreground/80">
+              Sobre
+            </a>
+            <a
+              href="/contact"
+              className="transition-colors hover:text-foreground/80">
+              Contato
+            </a>
+          </div>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                className="px-0 text-base hover:bg-transparent focus:ring-2 md:hidden">
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Abrir menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[250px]">
+              <nav className="flex flex-col gap-4 mt-6">
                 <a
                   href="/"
-                  className="text-blue-500 hover:underline">
+                  className="block px-2 py-1 text-lg">
                   Home
                 </a>
-              </li>
-              <li>
                 <a
-                  href="/indice"
-                  className="text-blue-500 hover:underline">
-                  Índice
+                  href="/products"
+                  className="block px-2 py-1 text-lg">
+                  Produtos
                 </a>
-              </li>
-              <li>
                 <a
-                  href="/sobre"
-                  className="text-blue-500 hover:underline">
-                  Sobre nós
+                  href="/about"
+                  className="block px-2 py-1 text-lg">
+                  Sobre
                 </a>
-              </li>
-              <li>
                 <a
-                  href="/contato"
-                  className="text-blue-500 hover:underline">
+                  href="/contact"
+                  className="block px-2 py-1 text-lg">
                   Contato
                 </a>
-              </li>
-            </ul>
-          </SheetContent>
-        </Sheet>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }
