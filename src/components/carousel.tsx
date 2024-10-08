@@ -1,9 +1,9 @@
 'use client';
 
+import { carouselItems } from '@/app/lib/carouselItens';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
-import { carouselItems } from '../lib/carouselItens';
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
