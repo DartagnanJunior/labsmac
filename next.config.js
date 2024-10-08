@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  basePath: "labsmac",
+  output: "export",
   reactStrictMode: true,
-  basePath: '/labsmac',
 };
 
-export default nextConfig;
+module.exports = nextConfig;
